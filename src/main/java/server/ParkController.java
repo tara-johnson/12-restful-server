@@ -83,5 +83,11 @@ public class ParkController {
     }
 
     // destroy
-    
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public Park deletePark(@PathVariable("id") int id) {
+        Park park = ParkStorage.parks.get(id);
+        ParkStorage.parks.remove(id);
+        return park;
+    }
 }

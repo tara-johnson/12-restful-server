@@ -11,14 +11,24 @@
             <div>National Park name: <input type="text" name="name" th:value="${name}" /></div>
             <div>Location: <input type="text" name="location" th:value="${location}" /></div>
             <div>Acreage: <input type="integer" name="area" th:value="${area}" /></div>
-            <input type="submit" />
+            <button id="delete-mountain">delete</button>
+            <input type="submit" value="save"/>
         </form>
 
         <script>
             const form = document.getElementById("edit-form");
+            const deleteButton = document.getElementById("delete-mountain");
+
+            deleteButton.addEventListener("click", (ev) => {
+                fetch(form.action, {
+                    method: "DELETE"
+                }).then(() => {
+                    window.location = "http://localhost:8080/parks";
+                });
+            });
+
             form.addEventListener("submit", (ev) => {
                 ev.preventDefault();
-
                 const inputs = ev.target.getElementsByTagName("input");
                 const name = inputs[0].value;
                 const location = inputs[1].value;
