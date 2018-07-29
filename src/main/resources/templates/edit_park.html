@@ -7,42 +7,14 @@
 
     <body>
         <h1>Edit a National Park</h1>
-        <form id="edit-form" th:action="'/parks/' + ${id}" method="PUT">
+        <form id="edit-form" th:action="'/api/parks/' + ${id}" method="PUT">
             <div>National Park name: <input type="text" name="name" th:value="${name}" /></div>
             <div>Location: <input type="text" name="location" th:value="${location}" /></div>
             <div>Acreage: <input type="integer" name="area" th:value="${area}" /></div>
-            <button id="delete-mountain">delete</button>
+            <button id="delete-park">delete</button>
             <input type="submit" value="save"/>
         </form>
 
-        <script>
-            const form = document.getElementById("edit-form");
-            const deleteButton = document.getElementById("delete-mountain");
-
-            deleteButton.addEventListener("click", (ev) => {
-                fetch(form.action, {
-                    method: "DELETE"
-                }).then(() => {
-                    window.location = "http://localhost:8080/parks";
-                });
-            });
-
-            form.addEventListener("submit", (ev) => {
-                ev.preventDefault();
-                const inputs = ev.target.getElementsByTagName("input");
-                const name = inputs[0].value;
-                const location = inputs[1].value;
-                const area = inputs[2].value;
-                const park = {name, location, area};
-                const body = JSON.stringify(park);
-
-                fetch(ev.target.action, {
-                    method: ev.target.getAttribute("method"),
-                    body: body
-                }).then(() => {
-                    window.location = "http://localhost:8080/parks";
-                });
-            })
-        </script>
+        <script src="/js/form.js"></script>
     </body>
 </html>

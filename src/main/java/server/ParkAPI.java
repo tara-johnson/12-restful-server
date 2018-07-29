@@ -6,31 +6,26 @@ import models.ParkStorage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Controller
-@RequestMapping("/parks")
-public class ParkController {
-    // create HTML form
-    @GetMapping("/new")
-    public String createParkForm() {
-        return "create_park";
-    }
-
+@RequestMapping("/api/parks")
+public class ParkAPI {
     // create
     @PostMapping
     @ResponseBody
-    public Park createPark(
+    public ModelAndView createPark(
         @RequestParam("name") String name,
         @RequestParam("location") String location,
         @RequestParam("area") int area
     ) {
         Park park = new Park(name, location, area);
         ParkStorage.parks.put(park.id, park);
-        return park;
+        return new ModelAndView("redirect:/parks");
     }
 
     // read all
@@ -47,22 +42,6 @@ public class ParkController {
     public Park getOnePark(@PathVariable("id") int id) {
         Park result = ParkStorage.parks.get(id);
         return result;
-    }
-
-    // update HTML form
-    @GetMapping("/{id}/edit")
-    public String editParkForm(
-        @PathVariable("id") int id,
-        Model model
-    ) {
-        Park park = ParkStorage.parks.get(id);
-
-        model.addAttribute("id", park.id);
-        model.addAttribute("name", park.name);
-        model.addAttribute("location", park.location);
-        model.addAttribute("area", park.area);
-
-        return "edit_park";
     }
 
     // update
