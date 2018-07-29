@@ -1,6 +1,19 @@
 body {
-    background-color: bisque;
-    color: #baddad;
+    background-color: #2E1E0F;
+    color: #A2A79E;
+}
+
+div {
+    padding: 5px;
+}
+
+.button-spacing {
+    margin: 5px;
+}
+
+a:link, a:visited {
+    color: #931621;
+    text-decoration: none;
 }
 
 input {

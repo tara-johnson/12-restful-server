@@ -8,15 +8,15 @@
         <h1>All National Parks</h1>
         <p>
             <a href="/parks/new">
-                add a new national park
+                Add a new national park
             </a>
         </p>
         <ul>
             <li th:each="park : ${parks}">
-                <p th:text = "${park.name}" />
-                <p th:text = "${park.location}" />
-                <p th:text = "${park.area}" />
-                <a th:href="'/parks/' + ${park.id} + '/edit'">edit</a>
+                <span th:text = "${park.name}" /> is located in
+                <span th:text = "${park.location}" /> on
+                <span th:text = "${park.area}" /> acres of land.
+                <a th:href="'/parks/' + ${park.id} + '/edit'">Edit</a>
             </li>
         </ul>
     </body>
