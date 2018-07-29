@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!--<meta charset="UTF-8">-->
+        <title>Edit a National Park</title>
+        <link rel="stylesheet" href="/css/main.css" />
+    </head>
+
+    <body>
+        <h1>Edit a National Park</h1>
+        <form id="edit-form" th:action="'/parks/' + ${id}" method="PUT">
+            <div>National Park name: <input type="text" name="name" th:value="${name}" /></div>
+            <div>Location: <input type="text" name="location" th:value="${location}" /></div>
+            <div>Acreage: <input type="integer" name="area" th:value="${area}" /></div>
+            <input type="submit" />
+        </form>
+
+        <script>
+            const form = document.getElementById("edit-form");
+            form.addEventListener("submit", (ev) => {
+                ev.preventDefault();
+
+                const inputs = ev.target.getElementsByTagName("input");
+                const name = inputs[0].value;
+                const location = inputs[1].value;
+                const area = inputs[2].value;
+                const park = {name, location, area};
+                const body = JSON.stringify(park);
+
+                fetch(ev.target.action, {
+                    method: ev.target.getAttribute("method"),
+                    body: body
+                }).then(() => {
+                    window.location = "http://localhost:8080/parks";
+                });
+            })
+        </script>
+    </body>
+</html>
