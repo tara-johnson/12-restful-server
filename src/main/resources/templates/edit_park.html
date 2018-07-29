@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!--<meta charset="UTF-8">-->
+        <title>Edit a National Park</title>
+        <link rel="stylesheet" href="/css/main.css" />
+    </head>
+
+    <body>
+        <h1>Edit a National Park</h1>
+        <form id="edit-form" th:action="'/api/parks/' + ${id}" method="PUT">
+            <div>National Park name: <input type="text" name="name" th:value="${name}" /></div>
+            <div>Location: <input type="text" name="location" th:value="${location}" /></div>
+            <div>Acreage: <input type="integer" name="area" th:value="${area}" /></div>
+            <button class="button-spacing" id="delete-park">delete</button>
+            <input class="button-spacing" type="submit" value="save"/>
+        </form>
+
+        <script src="/js/form.js"></script>
+    </body>
+</html>

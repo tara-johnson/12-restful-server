@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>All National Parks</title>
+        <link rel="stylesheet" href="/css/main.css" />
+    </head>
+
+    <body>
+        <h1>All National Parks</h1>
+        <p>
+            <a href="/parks/new">
+                Add a new national park
+            </a>
+        </p>
+        <ul>
+            <li th:each="park : ${parks}">
+                <span th:text = "${park.name}" /> is located in
+                <span th:text = "${park.location}" /> on
+                <span th:text = "${park.area}" /> acres of land.
+                <a th:href="'/parks/' + ${park.id} + '/edit'">Edit</a>
+            </li>
+        </ul>
+    </body>
+</html>

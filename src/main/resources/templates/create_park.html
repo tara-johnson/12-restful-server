@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Create a National Park</title>
+        <link rel="stylesheet" href="/css/main.css" />
+    </head>
+
+    <body>
+        <h1>Create a National Park</h1>
+        <form action="/api/parks" method="POST">
+            <div>National Park name: <input type="text" name="name" /></div>
+            <div>Location: <input type="text" name="location" /></div>
+            <div>Acreage: <input type="integer" name="area" /></div>
+            <input class="button-spacing" type="submit">
+        </form>
+    </body>
+</html>
